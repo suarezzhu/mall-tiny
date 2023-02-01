@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.macro.mall.tiny.modules.sua.mapper.SuaSiteMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.macro.mall.tiny.modules.sua.model.SuaSite">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="url" property="url"/>
+        <result column="note" property="note"/>
+        <result column="tag" property="tag"/>
+        <result column="type_id" property="typeId"/>
+        <result column="created_on" property="createdOn"/>
+        <result column="modified_on" property="modifiedOn"/>
+        <result column="deleted_on" property="deletedOn"/>
+    </resultMap>
+
+
+    <!--    查询网站列表-->
+    <select id="getSiteList" resultMap="BaseResultMap">
+        select * from sua_site where 1=1 and
+        <if test="param.name !=null and param.name!=''">
+            name like "%"#{param.name}"%"
+        </if>
+        <if test="param.type !=null and param.type!=''">
+            name like "%"#{param.type}"%"
+        </if>
+        <if test="param.tag !=null and param.tag!=''">
+            name like "%"#{param.name}"%"
+        </if>
+
+
+    </select>
+
+
+    <!--    插入网站-->
+    <insert id="addSite">
+        insert into sua_site (name, tag, type_id)
+        values (${param.name}, ${param.tag}, ${param.type})
+    </insert>
+
+
+    <select id="delSite">
+        DELETE
+        FROM sua_site
+        WHERE id = #{param}
+    </select>
+
+
+    <select id="editSite">
+        UPDATE sua_site
+        SET  name = #{param.name},
+             tag= #{param.tag},
+             type_id= #{param.type}
+        where id=#{param.id}
+    </select>
+
+
+</mapper>

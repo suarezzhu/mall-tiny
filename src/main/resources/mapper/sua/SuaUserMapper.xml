@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.macro.mall.tiny.modules.sua.mapper.SuaUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.macro.mall.tiny.modules.sua.model.SuaUser">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="roles" property="roles" />
+        <result column="avatar" property="avatar" />
+        <result column="introduction" property="introduction" />
+        <result column="email" property="email" />
+        <result column="created_on" property="createdOn" />
+        <result column="created_by" property="createdBy" />
+        <result column="modified_on" property="modifiedOn" />
+        <result column="modified_by" property="modifiedBy" />
+        <result column="deleted_on" property="deletedOn" />
+        <result column="state" property="state" />
+    </resultMap>
+
+</mapper>
