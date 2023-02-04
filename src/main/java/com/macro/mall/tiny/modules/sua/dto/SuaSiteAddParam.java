@@ -19,6 +19,12 @@ public class SuaSiteAddParam {
     @NotEmpty
     @ApiModelProperty(value = "网站标签",required = true)
     private String tag;
+    @NotEmpty
+    @ApiModelProperty(value = "网站链接",required = true)
+    private String url;
+
+    @ApiModelProperty(value = "网站备注",required = false)
+    private String note;
 
 
 }

@@ -1,5 +1,7 @@
 package com.macro.mall.tiny.modules.sua.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.macro.mall.tiny.modules.sua.dto.SuaSiteAddParam;
 import com.macro.mall.tiny.modules.sua.dto.SuaSiteSearchParam;
 import com.macro.mall.tiny.modules.sua.model.SuaSite;
@@ -19,12 +21,11 @@ import java.util.List;
 public interface SuaSiteService extends IService<SuaSite> {
 
 
-    List getSiteList(SuaSiteSearchParam suaSiteSearchParam);
+    IPage<SuaSite> getSiteList(Page<SuaSite> page, SuaSiteSearchParam suaSiteSearchParam);
     Boolean addSite(SuaSiteAddParam suaSiteAddParam);
-    void editSite(Integer id);
+    void editSite(SuaSite suaSite);
     void delSite(Integer id);
-    void getSiteDetailById(Integer id);
 
 
-
+    List getSiteDetail(Integer id);
 }

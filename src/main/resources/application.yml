@@ -6,7 +6,12 @@ spring:
     name: mall-tiny
   profiles:
     active: dev
-#  main:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  #  main:
 #    allow-circular-references: true
   mvc:
     pathmatch:
@@ -52,4 +57,4 @@ secure:
       - /admin/register
       - /admin/info
       - /admin/logout
-      - /sua/suaSite/**
+      - /sua/**

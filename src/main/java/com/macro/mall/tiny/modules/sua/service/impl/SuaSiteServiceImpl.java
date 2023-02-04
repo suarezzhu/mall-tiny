@@ -1,11 +1,15 @@
 package com.macro.mall.tiny.modules.sua.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.macro.mall.tiny.modules.sua.dto.SuaSiteAddParam;
 import com.macro.mall.tiny.modules.sua.dto.SuaSiteSearchParam;
 import com.macro.mall.tiny.modules.sua.model.SuaSite;
 import com.macro.mall.tiny.modules.sua.mapper.SuaSiteMapper;
 import com.macro.mall.tiny.modules.sua.service.SuaSiteService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.macro.mall.tiny.modules.ums.model.UmsMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +31,16 @@ public class SuaSiteServiceImpl extends ServiceImpl<SuaSiteMapper, SuaSite> impl
     private SuaSiteMapper suaSiteMapper;
 
     @Override
-    public List getSiteList(SuaSiteSearchParam suaSiteSearchParam) {
-        List<Map> rs = suaSiteMapper.getSiteList(suaSiteSearchParam);
+    public IPage<SuaSite> getSiteList(Page<SuaSite>page, SuaSiteSearchParam suaSiteSearchParam) {
+        IPage rs = suaSiteMapper.getSiteList(page,suaSiteSearchParam);
         return rs;
     }
+
+//    Page<UmsMenu> page = new Page<>(pageNum,pageSize);
+//    QueryWrapper<UmsMenu> wrapper = new QueryWrapper<>();
+//        wrapper.lambda().eq(UmsMenu::getParentId,parentId)
+//                .orderByDesc(UmsMenu::getSort);
+//        return page(page,wrapper);
 
     @Override
     public Boolean addSite(SuaSiteAddParam suaSiteAddParam) {
@@ -46,17 +56,21 @@ public class SuaSiteServiceImpl extends ServiceImpl<SuaSiteMapper, SuaSite> impl
     }
 
     @Override
-    public void editSite(Integer id) {
+    public void editSite(SuaSite suaSite) {
+        suaSiteMapper.editSite(suaSite);
 
     }
 
     @Override
     public void delSite(Integer id) {
+        suaSiteMapper.delSite(id);
 
     }
 
-    @Override
-    public void getSiteDetailById(Integer id) {
 
+    @Override
+    public List getSiteDetail(Integer id) {
+       List rs= suaSiteMapper.getSiteDetail(id);
+        return rs;
     }
 }

@@ -1,5 +1,7 @@
 package com.macro.mall.tiny.modules.sua.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.macro.mall.tiny.modules.sua.dto.SuaSiteAddParam;
 import com.macro.mall.tiny.modules.sua.dto.SuaSiteSearchParam;
 import com.macro.mall.tiny.modules.sua.model.SuaSite;
@@ -19,8 +21,10 @@ import java.util.Map;
  */
 public interface SuaSiteMapper extends BaseMapper<SuaSite> {
 
-    List<Map> getSiteList(@Param("param") SuaSiteSearchParam param);
+    IPage<SuaSite> getSiteList(Page<SuaSite> page, @Param("param") SuaSiteSearchParam param);
     void addSite(@Param("param") SuaSiteAddParam param);
-    void editSite(@Param("param") SuaSiteSearchParam param);
+    void editSite(@Param("param") SuaSite param);
     void delSite(@Param("id") Integer id);
+
+    List getSiteDetail(@Param("id") Integer id);
 }

@@ -20,5 +20,11 @@ public class SuaSiteSearchParam {
     @ApiModelProperty(value = "网站标签",required = false)
     private String tag;
 
+    @ApiModelProperty(value = "页面",required = false)
+    private Integer pageNum;
+
+    @ApiModelProperty(value = "页面条数",required = false)
+    private Integer pageSize;
+
 
 }

@@ -18,15 +18,15 @@
 
     <!--    查询网站列表-->
     <select id="getSiteList" resultMap="BaseResultMap">
-        select * from sua_site where 1=1 and
+        select * from sua_site where 1=1
         <if test="param.name !=null and param.name!=''">
-            name like "%"#{param.name}"%"
+            and name like "%"#{param.name}"%"
         </if>
         <if test="param.type !=null and param.type!=''">
-            name like "%"#{param.type}"%"
+            or type_id = #{param.typeId}
         </if>
         <if test="param.tag !=null and param.tag!=''">
-            name like "%"#{param.name}"%"
+            or tag like "%"#{tag}"%"
         </if>
 
 
@@ -35,25 +35,32 @@
 
     <!--    插入网站-->
     <insert id="addSite">
-        insert into sua_site (name, tag, type_id)
-        values (${param.name}, ${param.tag}, ${param.type})
+        insert into sua_site (name, tag, type_id, note, url)
+        values (#{param.name}, #{param.tag}, #{param.typeId}, #{param.note}, #{param.url})
     </insert>
 
 
     <select id="delSite">
         DELETE
         FROM sua_site
-        WHERE id = #{param}
+        WHERE id = #{id}
     </select>
 
 
     <select id="editSite">
         UPDATE sua_site
-        SET  name = #{param.name},
-             tag= #{param.tag},
-             type_id= #{param.type}
-        where id=#{param.id}
+        SET name   = #{param.name},
+            tag= #{param.tag},
+            type_id= #{param.typeId},
+            url= #{param.url},
+            note= #{param.note}
+        where id = #{param.id}
     </select>
 
+    <select id="getSiteDetail" resultType="com.macro.mall.tiny.modules.sua.model.SuaSite">
+        Select *
+        FROM sua_site
+        WHERE id = #{id}
+    </select>
 
 </mapper>
