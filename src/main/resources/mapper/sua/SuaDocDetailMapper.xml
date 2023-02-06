@@ -16,4 +16,71 @@
         <result column="create_id" property="createId" />
     </resultMap>
 
+
+
+
+
+    <!--    插入文章-->
+    <insert id="addDoc">
+        insert into sua_doc_detail (name, tag, type_id, note, content,create_id,create_time,modify_time)
+        values (#{param.name}, #{param.tag}, #{param.typeId}, #{param.note},
+                #{param.content},
+                #{param.create_id},
+                #{param.create_time},
+                #{param.modify_time},
+                )
+    </insert>
+
+    <!--    获取文件列表-->
+    <select id="getDocListByFolder"  resultType="java.util.Map">
+       select * from sua_doc_detail where type_id=#{id}
+
+    </select>
+
+
+<!--    获取根目录-->
+
+    <select id="getFolderByParentId" resultType="java.util.Map">
+        select * from sua_doc_folder where parent_id=#{pid}
+    </select>
+
+
+    <select id="deleteDoc">
+        DELETE
+        FROM sua_doc_detail
+        WHERE id = #{id}
+    </select>
+
+    <select id="deleteFolder">
+        DELETE
+        FROM sua_doc_folder
+        WHERE id = #{id}
+    </select>
+
+
+    <select id="editDoc">
+        UPDATE sua_doc_detail
+        SET name   = #{param.name},
+            tag= #{param.tag},
+            type_id= #{param.typeId},
+            content= #{param.content},
+            note= #{param.note}
+            modifyTime= #{param.modifyTime}
+        where id = #{param.id}
+    </select>
+
+    <select id="getDocDetail" resultType="java.util.Map">
+        Select *
+        FROM sua_doc_detail
+        WHERE id = #{id}
+    </select>
+
+
+
+
+
+
+
+
+
 </mapper>
